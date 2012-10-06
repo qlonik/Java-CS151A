@@ -13,14 +13,14 @@ public class HiLoGame
     {
         Scanner scan = new Scanner(System.in);
         Random rnd = new Random();
-        int guessedNumber, userGuess = 0, guessQuantity = 0; //random number, how many time user guesses
+        int guessedNumber, userGuess = 0, guessQuantity; //random number, how many time user guesses
         String input = ""; //user input
         boolean repeat = false; //repeat game or halt game
         
         do
         {
-            //guessedNumber = rnd.nextInt(100) + 1;
-            guessedNumber = 50;
+            guessedNumber = rnd.nextInt(100) + 1;
+            guessQuantity = 0;
             
             do
             {
@@ -49,8 +49,8 @@ public class HiLoGame
                         }
                     }
                 }
-            //if user did not guess or if input not "q" then we repeat
-            } while (userGuess != guessedNumber || !input.equals("q"));
+            //if user did not guess and if input not "q" then we repeat
+            } while (userGuess != guessedNumber && !input.equals("q"));
             
             //if we don't exit with input "q" from prev while then do this
             if (!input.equals("q"))
@@ -58,7 +58,7 @@ public class HiLoGame
                 //if user guessed then we print out message and quantity of guesses
                 if (userGuess == guessedNumber)
                 {
-                    System.out.println("Congratulations! You win. You guessed: " + 
+                    System.out.println("Congratulations! You win! You guessed: " + 
                             guessQuantity + " times.");
                 }
                 //ask user if he/she wants to play one more time
@@ -74,6 +74,7 @@ public class HiLoGame
                     repeat = false;
                 }
             }
-        } while (repeat = true && !input.equals("q"));
+        //if user said yes and prevously user didn't ask to exit, then repeat
+        } while (repeat == true && !input.equals("q"));
     }
 }
