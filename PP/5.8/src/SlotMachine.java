@@ -23,7 +23,7 @@ public class SlotMachine
         
         do
         {
-            System.out.print("Press enter to play (q to quit)");
+            System.out.print("Press enter to play (q to quit) ");
             input = scan.nextLine();
             System.out.println();
             
@@ -32,15 +32,14 @@ public class SlotMachine
                 digit1 = rnd.nextInt(10);
                 digit2 = rnd.nextInt(10);
                 digit3 = rnd.nextInt(10);
+                System.out.println("Digits: " + digit1 + digit2 + digit3);
                 
                 if (digit1 == digit2 && digit2 == digit3)
                 {
-                    System.out.println("Digits: " + digit1 + digit2 + digit3);
                     System.out.println("All three digits are equal");
                 }
                 else if (digit1 == digit2 || digit2 == digit3 || digit1 == digit3)
                 {
-                    System.out.println("Digits: " + digit1 + digit2 + digit3);
                     System.out.println("Some two digits are equal");
                 }
             }
