@@ -18,6 +18,8 @@ public class SlotMachine
     {
         Random rnd = new Random();
         Scanner scan = new Scanner(System.in);
+        
+        //stores user input string
         String input;
         int digit1, digit2, digit3;
         
@@ -32,12 +34,17 @@ public class SlotMachine
                 digit1 = rnd.nextInt(10);
                 digit2 = rnd.nextInt(10);
                 digit3 = rnd.nextInt(10);
+                
+                //output will be 3 numbers instead of sum of them because 
+                //first concatenation with string and then again 2 concatenations
                 System.out.println("Digits: " + digit1 + digit2 + digit3);
                 
+                //if all three equals
                 if (digit1 == digit2 && digit2 == digit3)
                 {
                     System.out.println("All three digits are equal");
                 }
+                //if any two equals
                 else if (digit1 == digit2 || digit2 == digit3 || digit1 == digit3)
                 {
                     System.out.println("Some two digits are equal");
