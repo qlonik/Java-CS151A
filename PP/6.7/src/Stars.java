@@ -78,12 +78,41 @@ public class Stars
             System.out.println();
         }
         
-//        System.out.println();
-//        System.out.println();
-//        
-//        for (int row = 1; row <= MAX_ROWS; row += 2)
-//        {
-//            
-//        }
+        System.out.println();
+        System.out.println();
+        
+        for (int row = 1; row <= MAX_ROWS / 2; row++)
+        {
+            for (int space = 1; space <= (MAX_ROWS - (2 * row - 1)) / 2; space++)
+            {
+                System.out.print(" ");
+            }
+            for (int star = 1; star <= 2 * row - 1; star++)
+            {
+                System.out.print("*");
+            }
+            for (int space = 1; space <= (MAX_ROWS - (2 * row - 1)) / 2; space++)
+            {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+        
+        for (int row = MAX_ROWS / 2; row >= 1; row--)
+        {
+            for (int space = 1; space <= (MAX_ROWS - (2 * row - 1)) / 2; space++)
+            {
+                System.out.print(" ");
+            }
+            for (int star = 1; star <= 2 * row - 1; star++)
+            {
+                System.out.print("*");
+            }
+            for (int space = 1; space <= (MAX_ROWS - (2 * row - 1)) / 2; space++)
+            {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 }
