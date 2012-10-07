@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 /**
  * OneHundredBottlesOfBeer.java
- * @author user
+ * @author Nikita Volodin
  * 
  * Programming project 6.4 page 296
  * 

@@ -1,6 +1,6 @@
 /**
  * CountFlips.java
- * @author user
+ * @author Nikita Volodin
  * 
  * Programming project 6.6 page 296
  * 
