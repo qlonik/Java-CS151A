@@ -26,18 +26,21 @@ public class Card
         suit = SUITS[rnd.nextInt(SUITS.length)];
     }
     
+    //method gets face value of a current card
     public String getFaceValue()
     {
         return faceValue;
     }
     
+    //method gets suit of a current card
     public String getSuit()
     {
         return suit;
     }
     
+    //method that represents card object as a string
     public String toString()
     {
-        return "Face value: " + faceValue + ", suit: " + suit;
+        return "Face value: " + faceValue + ",\tsuit: " + suit;
     }
 }
