@@ -1,6 +1,7 @@
 /**
  * Flight.java    Author: Nikita Volodin (id: 127196)
  * CS151A,  Assignment 3 - Problem #1
+ * Programming project 4.6 page 202
  * 
  * This class is created to describe Flight and some properties: 
  * airline name, number of flight, origin and destination cities

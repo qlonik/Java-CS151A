@@ -1,6 +1,7 @@
 /**
  * FlightTest.java    Author: Nikita Volodin (id: 127196)
  * CS151A,  Assignment 3 - Problem #1
+ * Programming project 4.6 page 202
  * 
  * This class initiates and updates some Flight objects
  */
@@ -32,6 +33,8 @@ public class FlightTest
         System.out.println(myFlight);
         myFlight.setOriginCity("Montreal");
         myFlight.setDestinationCity("Vancouver");
+        System.out.println(myFlight);
+        myFlight.setFlightNumber("546");
         System.out.println(myFlight);
     }
 }
