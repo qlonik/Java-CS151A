@@ -1,6 +1,7 @@
 /**
  * RollingDice2.java    Author: Nikita Volodin (id: 127196)
  * CS151A,  Assignment 3 - Problem #2
+ * Programming project 4.8 page 203
  * 
  * This class tests class PairOfDice
  */
