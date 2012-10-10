@@ -21,6 +21,8 @@ public class RollingDice2
         pair.setFaceValueDie1(3);
         pair.setFaceValueDie2(5);
         System.out.println(pair);
+        
+        pair.rollDices();
         System.out.println("Sum of face values: " + pair.getSum());
     }
 }
