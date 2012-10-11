@@ -49,4 +49,10 @@ public class DeckOfCards {
     public String getSuit(int position) {
         return deck[position].getSuit();
     }
+    
+    //method prints face value and suit of a card in a string format
+    public String toString(int position) {
+        return ("Face value:\t" + deck[position].getFaceValue() + 
+                ",\tSuit:\t" + deck[position].getSuit());
+    }
 }
