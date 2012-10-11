@@ -44,9 +44,35 @@ public class Main {
         //creates deck of 52 cards and choose 5 random
         DeckOfCards deck = new DeckOfCards();
         Random rnd = new Random();
+        int[] genNumbers = new int[5]; //array that stores already existing cards
         
-        for (int amount = 0; amount < 5; amount++) {
-            System.out.println(deck.toString(rnd.nextInt(52)));
+        for (int card = 0; card < 5; card++) {
+            int gen = rnd.nextInt(deck.getSizeOfDeck());
+            
+            for (int position = 0; position < card; position++) {
+                if (inArray(gen, genNumbers)) {
+                    gen = rnd.nextInt(deck.getSizeOfDeck());
+                    position = 0;
+                }
+            }
+            
+            genNumbers[card] = gen;
+            System.out.println(deck.toString(gen));
         }
+    }
+    
+    //method checks if input value is in input array
+    public static boolean inArray(int inputNumber, int[] inputArray) {
+        boolean result = false;
+        int position = 0;
+        
+        while (position < inputArray.length && !result) {
+            if (inputNumber == inputArray[position]) {
+                result = true;
+            }
+            position++;
+        }
+        
+        return result;
     }
 }
