@@ -3,8 +3,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * RockPaperScissors.java Author: Nikita Volodin (id: 127196) CS151A, Assignment
- * 4 - Problem #2 Programming project 5.7 page 264
+ * RockPaperScissors.java   Author: Nikita Volodin (id: 127196)
+ * CS151A,  Assignment 4 - Problem #2
+ * Programming project 5.7 page 264
  *
  * This class emulates Rock Paper Scissors game
  */
