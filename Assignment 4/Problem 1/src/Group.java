@@ -37,7 +37,7 @@ public class Group {
     }
 
     /**
-     * Method specified sets data for specified student
+     * Method sets data for specified student
      * 
      * @param student Number of student: 1, 2 or 3
      * @param nameInput Name that should be set for student
