@@ -6,6 +6,9 @@
 # tmp text editor files
 *~
 
+# pdf files with problems #
+*.pdf
+
 # projects
 build/
 private/
