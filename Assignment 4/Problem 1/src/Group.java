@@ -17,12 +17,12 @@ public class Group {
     }
 
     /**
-     * Method reads number of student and returns its data
+     * Method reads number of student and returns object that represents student
      * 
      * @param student Number of student: 1, 2 or 3
-     * @return All data of that student
+     * @return Objacet that represent a student
      */
-    public String getStudentInfo(int student) {
+    public Student getStudent(int student) {
         Student st = null;
 
         if (student == 1) {
@@ -33,29 +33,23 @@ public class Group {
             st = st3;
         }
 
-        return st.toString();
+        return st;
     }
 
     /**
-     * Method sets data for specified student
+     * Method sets object student to specified student (st1, or st2, or st3)
      * 
-     * @param student Number of student: 1, 2 or 3
-     * @param nameInput Name that should be set for student
-     * @param emailInput Email that should be set for student
-     * @param phoneInput Phone number that should be set for student
+     * @param student Number of student (1st, 2nd, or 3rd)
+     * @param stInput Input object that represents Student
      */
-    public void setStudentInfo(int student, String nameInput, String emailInput,
-            String phoneInput) {
-        Student st = new Student(nameInput, emailInput, phoneInput);
-
+    public void setStudent(int student, Student stInput) {
         if (student == 1) {
-            st1 = st;
+            st1 = stInput;
         } else if (student == 2) {
-            st2 = st;
+            st2 = stInput;
         } else if (student == 3) {
-            st3 = st;
+            st3 = stInput;
         }
-        
     }
     
     /**
