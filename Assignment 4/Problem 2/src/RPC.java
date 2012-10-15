@@ -3,15 +3,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * RockPaperScissors.java   Author: Nikita Volodin (id: 127196)
+ * RPC.java   Author: Nikita Volodin (id: 127196)
  * CS151A,  Assignment 4 - Problem #2
  * Programming project 5.7 page 264
  *
  * This class emulates Rock Paper Scissors game
  */
-public class RockPaperScissors {
-
-    public static void main(String[] args) {
+public class RPC {
+    
+    public void game() {
         //create some variables
         Random rnd = new Random();
         Scanner scan = new Scanner(System.in);
@@ -30,14 +30,14 @@ public class RockPaperScissors {
         int userValue, machineValue;
 
         //while user don't input q (quit) we play
-        while (!input.equals("q")) {
+        while (!input.equalsIgnoreCase("q")) {
             //ask user for gesture
             System.out.print("Write your gesture (q for quit): ");
             input = scan.nextLine();
             System.out.println();
 
             //if user didn't put q (quit) we generate our gesture and play
-            if (!input.equals("q")) {
+            if (!input.equalsIgnoreCase("q")) {
                 //generate our value
                 machineValue = rnd.nextInt(3);
 
@@ -95,17 +95,14 @@ public class RockPaperScissors {
      * 1 - scissors
      * 0 - paper
      */
-    public static int transferToNumber(String input) {
+    private int transferToNumber(String input) {
         int value = -1;
 
-        if (input.equals("rock") || input.equals("Rock")
-                || input.equals("r") || input.equals("R")) {
+        if (input.equalsIgnoreCase("rock") || input.equalsIgnoreCase("r")) {
             value = 2;
-        } else if (input.equals("scissors") || input.equals("Scissors")
-                || input.equals("s") || input.equals("S")) {
+        } else if (input.equalsIgnoreCase("scissors") || input.equalsIgnoreCase("s")) {
             value = 1;
-        } else if (input.equals("paper") || input.equals("Paper")
-                || input.equals("p") || input.equals("P")) {
+        } else if (input.equalsIgnoreCase("paper") || input.equalsIgnoreCase("p")) {
             value = 0;
         }
 
@@ -134,7 +131,7 @@ public class RockPaperScissors {
      * 1 - user wins
      * 0 - machine wins
      */
-    public static int result(int machineInput, int userInput) {
+    private int result(int machineInput, int userInput) {
         int result = -1;
 
         if (machineInput == userInput) {
