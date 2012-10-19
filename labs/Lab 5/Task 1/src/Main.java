@@ -15,16 +15,20 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         int year;
         
-        System.out.print("Input a year: ");
-        year = scan.nextInt();
-        System.out.println();
-        
-        if (LeapYear.check(year))
-        {
-            System.out.println(year + " is a leap");
-        } else {
-            System.out.println(year + " is not a leap");
-        }
+        do {
+            System.out.print("Input a year (-1 to quit): ");
+            year = scan.nextInt();
+            System.out.println();
+
+            if (year != -1) {
+                if (LeapYear.check(year))
+                {
+                    System.out.println(year + " is a leap");
+                } else {
+                    System.out.println(year + " is not a leap");
+                }
+            }
+        } while (year != -1);
     }
 
 }
