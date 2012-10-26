@@ -8,6 +8,8 @@
 
 # pdf files with problems #
 *.pdf
+# Resources files for labs
+*.zip
 
 # projects
 build/
