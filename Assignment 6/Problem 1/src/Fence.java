@@ -11,9 +11,9 @@ import javax.swing.JApplet;
  */
 public class Fence extends JApplet {
     
-    //window properties
-    private final int WIDTH_OF_WINDOW = 1000;
-    private final int HEIGHT_OF_WINDOW = 500;
+//    //window properties
+//    private final int WIDTH_OF_WINDOW = 1000;
+//    private final int HEIGHT_OF_WINDOW = 500;
 
     //fence properties
     private final int WIDE = 25;
@@ -31,7 +31,7 @@ public class Fence extends JApplet {
         Random rnd = new Random();
         Color color;
 //        setSize(new Dimension(WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW));
-        setPreferredSize(new Dimension(WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW));
+//        setPreferredSize(new Dimension(WIDTH_OF_WINDOW, HEIGHT_OF_WINDOW));
         
         for (int i = 0; i < NUMBER_OF_PICKETS; i++) {
             color = new Color(rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
