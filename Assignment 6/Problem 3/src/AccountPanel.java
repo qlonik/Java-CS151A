@@ -47,13 +47,15 @@ public class AccountPanel extends JPanel{
     
     private class FieldListener implements ActionListener {
         public void actionPerformed (ActionEvent event) {
-            Person person = new Person(field.getText());
-            if (person.getMoney() <= 500000) {
-                poor.add(person);
-            } else {
-                rich.add(person);
+            if (field.getText().length() > 0) {
+                Person person = new Person(field.getText());
+                if (person.getMoney() <= 500000) {
+                    poor.add(person);
+                } else {
+                    rich.add(person);
+                }
+                field.setText("");
             }
-            field.setText("");
         }
     }
     
