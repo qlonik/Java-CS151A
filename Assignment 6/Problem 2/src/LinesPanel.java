@@ -50,7 +50,7 @@ public class LinesPanel extends JPanel{
         super.paintComponent(page);
         
         for (int i = 0; i < linesArrayList.size(); i++) {
-            page.setColor(new Color(linesArrayList.get(i)[4], linesArrayList.get(i)[5], linesArrayList.get(i)[5]));
+            page.setColor(new Color(linesArrayList.get(i)[4], linesArrayList.get(i)[5], linesArrayList.get(i)[6]));
             page.drawLine(linesArrayList.get(i)[0], linesArrayList.get(i)[1],
                     linesArrayList.get(i)[2], linesArrayList.get(i)[3]);
         }
