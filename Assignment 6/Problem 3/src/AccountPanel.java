@@ -5,8 +5,11 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * AccountPanel.java
- * @author Nikita Volodin
+ * AccountPanel.java        Author: Nikita Volodin (127196)
+ * CS151A,                  Assignment 6 - Problem #3
+ * 
+ * This class creates panel, that draws all gui and adds listeners on button 
+ * and text field. Also it has an ArrayList of people
  */
 public class AccountPanel extends JPanel{
     JPanel input;

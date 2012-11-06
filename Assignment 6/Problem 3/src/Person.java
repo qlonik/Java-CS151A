@@ -4,10 +4,10 @@ import java.util.Random;
 
 
 /**
- * Person.java
- * @author Nikita Volodin
+ * Person.java      Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 6 - Problem #3
  * 
- * Class represents a person
+ * Class represents a person with name and money
  */
 public class Person {
     private String name;

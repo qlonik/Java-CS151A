@@ -3,8 +3,13 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
- * AccountDriver.java
- * @author Nikita Volodin
+ * AccountDriver.java       Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 6 - Problem #3
+ * 
+ * This is a driver class for a program. This program creates a frame with text field,
+ * button and 2 labels. Names of people input using text field. Button is to
+ * show a sum of money of two groups of people. And at the same time program
+ * prints output with names and money to stdout
  */
 public class AccountDriver {
 
