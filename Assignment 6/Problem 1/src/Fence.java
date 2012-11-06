@@ -25,7 +25,7 @@ public class Fence extends JApplet {
     public void paint(Graphics page) {
         //searching for a number of pickets if 11 is not fit
         //we have formula: width = numberOfPickets * (WIDE + GAP) - GAP
-        //find out numberOfPickets: numberOfPickets: (width + GAP) / (WIDE + GAP)
+        //find out numberOfPickets: numberOfPickets = (width + GAP) / (WIDE + GAP)
         int pickets = (getWidth() + GAP) / (WIDE + GAP);
         if (pickets < 11) {
             numberOfPickets = pickets;
