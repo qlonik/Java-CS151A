@@ -21,13 +21,13 @@ class CalcPanel extends JPanel {
     boolean toEmpty;
 
     public CalcPanel() {
+        this.setBackground(Color.YELLOW);
         this.setLayout(new BorderLayout());
 
         //display
         display = new JLabel("0");
         display.setFont(new Font("Calibri", Font.PLAIN, 40));
         display.setHorizontalAlignment(JLabel.RIGHT);
-        display.setBackground(Color.YELLOW);
         display.setSize(getWidth(), display.getHeight());
         add(display, BorderLayout.NORTH);
 
@@ -42,10 +42,11 @@ class CalcPanel extends JPanel {
         }
         add(inputButtons, BorderLayout.CENTER);
 
-        //start of variables for logic
+        //variables for logic
         number = 0;
         result = 0;
         toEmpty = true;
+        action = "";
         nextAction = "";
     }
 
@@ -64,16 +65,26 @@ class CalcPanel extends JPanel {
                     toEmpty = false;
                     display.setText("");
                 }
+                //if we pressed last time equals button
+                //and next button after it is a number
+                //then act as we clear actions
+                if (nextAction.equals("=")){
+                    action = "";
+                    nextAction = "";
+                    
+                }
                 //if pressed number button
                 //then we add it to a display and create a number
                 //by multiplying by 10 and adding pressed number
-                if (Integer.toString(number).length() < 8) {
+//                if (Integer.toString(number).length() < 8) {
+                if (display.getText().length() <= 9) {
                     display.setText(display.getText() + button.getText());
                     digit = Integer.parseInt(button.getText());
                     number = number * 10 + digit;
+                    
+//                    System.out.println("" + number);
+//                    System.out.println("" + digit);
                 }
-                
-                System.out.println("" + number);
             }
             //if pressed other (action) button
             else {
@@ -89,9 +100,11 @@ class CalcPanel extends JPanel {
                     number = 0;
                     result = 0;
                     action = "";
+                    nextAction = "";
                     display.setText("0");
 //                } else if (nextAction.equals("=")) {
-
+//                    action = "";
+//                    nextAction = "";
                 } else {
                     switch (action) {
                         case "+":
