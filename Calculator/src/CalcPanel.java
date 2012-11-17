@@ -1,7 +1,6 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 
 public class CalcPanel extends JPanel {
@@ -41,134 +40,9 @@ public class CalcPanel extends JPanel {
         //logic variables
         toEmpty = true;
     }
-    
-    private boolean isNumber(char input) {
-        return (input >= '0' && input <= '9');
-    }
-    
-    private boolean isOperator(char input) {
-        return (input == '+' || input == '-' || input == '*' || input == '/' || input == '^');
-    }
-    
-    private boolean isLeftAssociative(char input) {
-        return (input == '+' || input == '-' || input == '*' || input == '/');
-    }
-    
-    private int priority(char input) {
-        switch (input) {
-            case '^':
-                return 4;
-            case '*':
-            case '/':
-                return 3;
-            case '+':
-            case '-':
-                return 2;
-            default:
-                return 0;
-        }
-    }
-    
-    private String sanitize(String expression) {
-        for (int i = 0; i < expression.length(); i++) {
-            if (isOperator(expression.charAt(i))) {
-                expression = expression.substring(0, i) + " " + expression.charAt(i)
-                        + " " + expression.substring(i + 1); 
-                i++;
-            } else if (expression.charAt(i) == '(') {
-                expression = expression.substring(0, i + 1) + " " + expression.substring(i + 1);
-            } else if (expression.charAt(i) == ')') {
-                expression = expression.substring(0, i) + " " + expression.substring(i);
-                i++;
-            }
-        }
-        
-        return expression;
-    }
-    
-    private ArrayList<Character> getPostfixNotation(String expression) {
-//        String resultString = ""; //for returning result as string
-        ArrayList<Character> result = new ArrayList<>();
-        Stack<Character> operators = new Stack<>();
-        
-        for (int i = 0; i < expression.length(); i++){
-            if (expression.charAt(i) != ' ') {
-                char token = expression.charAt(i);
-                
-                if (isNumber(token)) {
-//                    resultString += token + " "; //for result as string
-                    result.add(token);
-                } else if (isOperator(token)) {
-                    if (!operators.empty()) {
-                        while (!operators.empty() &&
-                                (isLeftAssociative(token) ? priority(token) <= priority(operators.peek())
-                                                         : priority(token) < priority(operators.peek()))) {
-//                            resultString += operators.pop() + " "; //for result as string
-                            result.add(operators.pop());
-                        }
-                    }
-                    operators.add(token);
-                } else if (token == '(') {
-                    operators.add(token);
-                } else if (token == ')') {
-                    while (!operators.empty() && operators.peek() != '(') {
-//                        resultString += operators.pop() + " "; //for result as string
-                        result.add(operators.pop());
-                    }
-                    if (operators.empty()) {
-                        System.out.println("somewhere in expression missed opening parentheses");
-                        break;
-                    }
-                    operators.pop();
-                } else {
-                    System.out.println("is not number and not operator");
-                    break;
-                }
-            }
-        }
-        
-        while (!operators.empty()) {
-            if (operators.peek() == '(') {
-                System.out.println("somewhere in expression missed closing parentheses");
-                break;
-            }
-//            resultString += operators.pop() + " "; //for result as string
-            result.add(operators.pop());
-        }
-        return result;
-    }
-    
-    private String calc(String expression){
-        expression = sanitize(expression);
-        ArrayList<Character> postfixNotation = getPostfixNotation(expression);
-        Stack<Integer> result = new Stack<>();
-        
-        for (int i = 0; i < postfixNotation.size(); i++) {
-            Character token = postfixNotation.get(i);
-            if (isNumber(token)) {
-                result.add(Integer.parseInt("" + token));
-            } else if (isOperator(token)) {
-                int secondOperand = result.pop();
-                int firstOperand = result.pop();
-                switch (token){
-                    case '+':
-                        result.add(firstOperand + secondOperand);
-                        break;
-                    case '-':
-                        result.add(firstOperand - secondOperand);
-                        break;
-                    case '*':
-                        result.add(firstOperand * secondOperand);
-                        break;
-                    case '/':
-                        result.add(firstOperand / secondOperand);
-                        break;
-                    case '^':
-                        break;
-                }
-            }
-        }
-        return ("" + result.pop());
+
+    private boolean isDigit(String input) {
+        return (input.charAt(0) >= '0' && input.charAt(0) <= '9');
     }
     
     private class ButtonListener implements ActionListener{
@@ -179,7 +53,9 @@ public class CalcPanel extends JPanel {
                     !button.getText().equals("C") &&
                     !button.getText().equals(" ")) {
                 if (toEmpty) {
-                    display.setText("");
+                    if (isDigit(button.getText()) || display.getText().equals("0")) {
+                        display.setText("");
+                    }
                     toEmpty = false;
                 }
                 display.setText(display.getText() + button.getText());
@@ -187,7 +63,14 @@ public class CalcPanel extends JPanel {
                 display.setText("0");
                 toEmpty = true;
             } else if (button.getText().equals("=")) {
-                String result = calc(display.getText());
+                String result;
+                try {
+                    int solution = new CalcSolver().calc(display.getText());
+                    result = String.valueOf(solution);
+                } catch (ArithmeticException exception) {
+                    System.out.println("Arithmetic Error: " + exception);
+                    result = "err";
+                }
                 display.setText(result);
                 toEmpty = true;
             }
