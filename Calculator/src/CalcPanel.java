@@ -8,7 +8,7 @@ public class CalcPanel extends JPanel {
     JPanel inputButtons;
     final String [] BUTTON_NAMES = {"7", "8", "9", "/", "(",
                                   "4", "5", "6", "*", ")",
-                                  "1", "2", "3", "-", " ",
+                                  "1", "2", "3", "-", "^",
                                   "0", "C", "=", "+", " "};
     boolean toEmpty;
     
@@ -65,7 +65,8 @@ public class CalcPanel extends JPanel {
             } else if (button.getText().equals("=")) {
                 String result;
                 try {
-                    int solution = new CalcSolver().calc(display.getText());
+                    CalcSolver solver = new CalcSolver(display.getText());
+                    int solution = solver.getSolution();
                     result = String.valueOf(solution);
                 } catch (ArithmeticException exception) {
                     System.out.println("Arithmetic Error: " + exception);

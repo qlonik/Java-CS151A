@@ -3,10 +3,22 @@ import java.util.*;
 
 public class CalcSolver {
     //#TODO check if there is 'negative' numbers (that ones that starts with minus sign)
+    
+    private String expression;
+    private ArrayList<String> postfix;
+    private int solution;
 
-    public CalcSolver() {
+    public CalcSolver(String inputExpression) {
+        expression = inputExpression;
+        sanitize();
+        getPostfixNotation();
+        calc();
     }
 
+    public int getSolution() {
+        return solution;
+    }
+    
     private boolean isNumber(String input) {
         boolean result = true;
         for (int i = 0; i < input.length() && result; i++) {
@@ -18,11 +30,13 @@ public class CalcSolver {
     }
 
     private boolean isOperator(String input) {
-        return (input.equals("+") || input.equals("-") || input.equals("*") || input.equals("/") || input.equals("^"));
+        return (input.equals("+") || input.equals("-") ||
+                input.equals("*") || input.equals("/") || input.equals("^"));
     }
 
     private boolean isLeftAssociative(String input) {
-        return (input.equals("+") || input.equals("-") || input.equals("*") || input.equals("/"));
+        return (input.equals("+") || input.equals("-") ||
+                input.equals("*") || input.equals("/"));
     }
 
     private int priority(String input) {
@@ -37,8 +51,8 @@ public class CalcSolver {
         }
     }
 
-    private String sanitize(String expression) {
-        //if expression starts from negative number
+    private void sanitize() {
+        //if expression starts with negative number
         if (expression.charAt(0) == '-') {
             expression = "0" + expression;
         }
@@ -54,11 +68,9 @@ public class CalcSolver {
                 i++;
             }
         }
-
-        return expression;
     }
 
-    private ArrayList<String> getPostfixNotation(String expression) {
+    private void getPostfixNotation() {
         ArrayList<String> result = new ArrayList<>();
         Stack<String> operators = new Stack<>();
         Scanner line = new Scanner(expression);
@@ -99,39 +111,38 @@ public class CalcSolver {
             }
             result.add(operators.pop());
         }
-        return result;
+        postfix = result;
     }
 
-    public int calc(String expression) throws ArithmeticException {
-        expression = sanitize(expression);
-        ArrayList<String> postfixNotation = getPostfixNotation(expression);
-        Stack<Integer> result = new Stack<>();
+    private void calc() throws ArithmeticException {
+        Stack<Integer> calculatingStack = new Stack<>();
 
-        for (int i = 0; i < postfixNotation.size(); i++) {
-            String token = postfixNotation.get(i);
+        for (int i = 0; i < postfix.size(); i++) {
+            String token = postfix.get(i);
             if (isNumber(token)) {
-                result.add(Integer.parseInt(token));
+                calculatingStack.add(Integer.parseInt(token));
             } else if (isOperator(token)) {
-                int secondOperand = result.pop();
-                int firstOperand = result.pop();
+                int secondOperand = calculatingStack.pop();
+                int firstOperand = calculatingStack.pop();
                 switch (token) {
                     case "+":
-                        result.add(firstOperand + secondOperand);
+                        calculatingStack.add(firstOperand + secondOperand);
                         break;
                     case "-":
-                        result.add(firstOperand - secondOperand);
+                        calculatingStack.add(firstOperand - secondOperand);
                         break;
                     case "*":
-                        result.add(firstOperand * secondOperand);
+                        calculatingStack.add(firstOperand * secondOperand);
                         break;
                     case "/":
-                        result.add(firstOperand / secondOperand);
+                        calculatingStack.add(firstOperand / secondOperand);
                         break;
                     case "^":
+                        calculatingStack.add((int) Math.pow(firstOperand, secondOperand));
                         break;
                 }
             }
         }
-        return result.pop();
+        solution = calculatingStack.pop();
     }
 }
