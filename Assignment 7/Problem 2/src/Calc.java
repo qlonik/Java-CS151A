@@ -2,9 +2,11 @@
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
-/**
- *
- * @author qlonik
+/*
+ * Calc.java      Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 7 - Problem #2
+ * 
+ * This class draws a JFrame of calculator and add panel with calculator
  */
 public class Calc {
 

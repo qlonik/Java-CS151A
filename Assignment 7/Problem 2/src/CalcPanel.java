@@ -3,20 +3,27 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/*
+ * CalcPanel.java      Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 7 - Problem #2
+ * 
+ * This class creates calculator panel
+ */
+
 class CalcPanel extends JPanel {
 
     private JLabel display;
     private JPanel inputButtons;
-    private String[] nameOfButtons = {"7", "8", "9", "/",
-                                      "4", "5", "6", "*",
-                                      "1", "2", "3", "-",
-                                      "0", "=", "C", "+"};
+    private final String[] NAME_OF_BUTTONS = {"7", "8", "9", "/",
+                                              "4", "5", "6", "*",
+                                              "1", "2", "3", "-",
+                                              "0", "=", "C", "+"};
     //number entered
     int number;
     //result calculated
     int result;
     //action that we pressed and that will be next to do
-    String action, nextAction;
+    String action;
     //true if we need to empty the display
     boolean toEmpty;
 
@@ -35,8 +42,8 @@ class CalcPanel extends JPanel {
         //input buttons
         inputButtons = new JPanel(new GridLayout(4, 4));
         ButtonListener listener = new ButtonListener();
-        for (int i = 0; i < nameOfButtons.length; i++) {
-            JButton button = new JButton(nameOfButtons[i]);
+        for (int i = 0; i < NAME_OF_BUTTONS.length; i++) {
+            JButton button = new JButton(NAME_OF_BUTTONS[i]);
             button.addActionListener(listener);
             inputButtons.add(button);
         }
@@ -47,64 +54,55 @@ class CalcPanel extends JPanel {
         result = 0;
         toEmpty = true;
         action = "";
-        nextAction = "";
     }
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
-            int digit;
             
             //because text on each button is only one letter
-            //we get that letter, transferring it into char
+            //we get that letter, converting it into char
             //and check if it a digit
             if (Character.isDigit(button.getText().charAt(0))) {
-                //if toEmpty flag is true, then we clear the display and 
-                //set flag to false
+                //toEmpty flag is always false while we are pressing digit buttons
+                //but becomes true when we press any function button
+                //so we empty the display after pressing number button only
+                //if before it was pressed function button
                 if (toEmpty) {
                     toEmpty = false;
                     display.setText("");
                 }
-                //if we pressed last time equals button
-                //and next button after it is a number
-                //then act as we clear actions
-                if (nextAction.equals("=")){
+                //when we press any number button and previously was pressed equals
+                //sign, then we consider that we start from beginning
+                //and emptying action variables
+                if (action.equals("=")){
                     action = "";
-                    nextAction = "";
-                    
                 }
-                //if pressed number button
-                //then we add it to a display and create a number
-                //by multiplying by 10 and adding pressed number
-//                if (Integer.toString(number).length() < 8) {
-                if (display.getText().length() <= 9) {
+                
+                //allow inserting numbers only up to 6 digits long
+                //every press on a digit button add this number to a display
+                if (display.getText().length() < 6) {
                     display.setText(display.getText() + button.getText());
-                    digit = Integer.parseInt(button.getText());
-                    number = number * 10 + digit;
-                    
-//                    System.out.println("" + number);
-//                    System.out.println("" + digit);
                 }
             }
             //if pressed other (action) button
             else {
+                //when we press an action button, we need to clear display
+                //on next hit of digit button
                 toEmpty = true;
-                action = nextAction;
+                //get a number that is currently on display
+                number = Integer.parseInt(display.getText());
                 //if we entered the first number
                 //save it into result witout any calculations
                 if (action.equals("")) {
                     result = number;
                 }
-                nextAction = button.getText();
-                if (nextAction.equals("C")) {
+                //if we press C button then consider that we start from beginning
+                if (button.getText().equals("C")) {
                     number = 0;
                     result = 0;
                     action = "";
-                    nextAction = "";
                     display.setText("0");
-//                } else if (nextAction.equals("=")) {
-//                    action = "";
-//                    nextAction = "";
                 } else {
                     switch (action) {
                         case "+":
@@ -128,6 +126,10 @@ class CalcPanel extends JPanel {
                     } else {
                         display.setText("" + result);
                     }
+                    
+                    //when we pressed a new action and old one evaluated
+                    //and current one is not a Clear, then we store this new action
+                    action = button.getText();
                     number = 0;
                 }
             }
