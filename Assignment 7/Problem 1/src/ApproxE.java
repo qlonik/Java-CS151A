@@ -1,13 +1,19 @@
-/**
+/*
+ * ApproxE.java      Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 7 - Problem #1
  * 
- * @author Nikita Volodin
+ * This program calculates value of constant e with accuracy
+ * up to epsilon
  */
 public class ApproxE {
     public ApproxE() {
     }
     
-    //calculates an approximate value of e
-    //with approximaiton of epsilon
+    /**
+     * Method calculates value of e with approximation to @param epsilon
+     * 
+     * @param epsilon approximation of calculation
+     */
     public void calc(double epsilon) {
         double approxEPrev = 0;
         double approxE = 0;
