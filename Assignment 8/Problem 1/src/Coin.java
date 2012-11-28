@@ -3,7 +3,10 @@
 //
 //  Represents a coin with two sides that can be flipped.
 //********************************************************************
-
+//  Added implementation of Lockable interface to this objects
+//  Nikita Volodin (127196)
+//  CS151A, Assignment 8 - Problem #1
+//********************************************************************
 public class Coin implements Lockable
 {
     private int key;

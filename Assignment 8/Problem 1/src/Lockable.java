@@ -1,4 +1,8 @@
+
 /**
+ * Lockable.java        Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 8 - Problem #1
+ *
  * Interface for a lockable object
  */
 public interface Lockable {

@@ -3,6 +3,10 @@
 //
 //  Demonstrates the use of an if-else statement.
 //********************************************************************
+//  Added demonstration of lockable functions
+//  Nikita Volodin (127196)
+//  CS151A  Assignment 8 - Problem #1
+//********************************************************************
 
 public class CoinFlip {
     //-----------------------------------------------------------------

@@ -1,4 +1,10 @@
 
+/**
+ * Driver.java        Author: Nikita Volodin (127196)
+ * CS151A,          Assignment 8 - Problem #2
+ *
+ * Class tests DeckOfCard class by dealing 6 cards to 4 players
+ */
 public class Driver {
 
     /**
@@ -8,8 +14,8 @@ public class Driver {
         DeckOfCards myDeck = new DeckOfCards();
         myDeck.shuffle();
         
-        String s1 = "Player 1             Player 2             " + 
-                "Player 3             Player 4";
+        String s1 = "Player 1             Player 2             "
+                + "Player 3             Player 4";
         String s2 = "";
         for (int i = 0; i < 4 * 20; i++) {
             s2 += "-";
@@ -18,7 +24,7 @@ public class Driver {
         System.out.println(s1);
         System.out.println(s2);
         
-        //creating 6 cards each of 4 players
+        //creating 6 cards for each of 4 players
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
                 String s = myDeck.pop().toString();
