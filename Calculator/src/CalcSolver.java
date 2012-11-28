@@ -52,10 +52,10 @@ public class CalcSolver {
     }
 
     private void sanitize() {
-        //if expression starts with negative number
-        if (expression.charAt(0) == '-') {
-            expression = "0" + expression;
-        }
+//        //if expression starts with negative number
+//        if (expression.charAt(0) == '-') {
+//            expression = "0" + expression;
+//        }
         for (int i = 0; i < expression.length(); i++) {
             if (isOperator(String.valueOf(expression.charAt(i)))) {
                 expression = expression.substring(0, i) + " " + expression.charAt(i)
@@ -114,7 +114,7 @@ public class CalcSolver {
         postfix = result;
     }
 
-    private void calc() throws ArithmeticException {
+    private void calc() {
         Stack<Integer> calculatingStack = new Stack<>();
 
         for (int i = 0; i < postfix.size(); i++) {
